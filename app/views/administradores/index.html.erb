@@ -12,8 +12,7 @@
       <tr>
         <th>Nome</th>
         <th>Email</th>
-        <th>Senha</th>
-            <th></th>
+        <th></th>
         <th></th>
         <th></th>
       </tr>
@@ -23,7 +22,6 @@
       <%= content_tag_for(:tr, @administradores) do |administrador| %>
         <td><%= administrador.nome %></td>
         <td><%= administrador.email %></td>
-        <td><%= administrador.senha %></td>
             <td><%= link_to 'Mostrar', administrador %></td>
         <td><%= link_to 'Editar', edit_administrador_path(administrador) %></td>
         <td><%= link_to 'Apagar', administrador, method: :delete, data: { confirm: 'Tem certeza ?' } %></td>

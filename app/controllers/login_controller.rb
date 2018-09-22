@@ -8,10 +8,10 @@ class LoginController < ApplicationController
 	end
 
 	def login
-		if params[:email].present? && params[:senha].present?
-			adms = Administrador.where(email: params[:email], senha: params[:senha])
+		if params[:login][:email].present? && params[:login][:senha].present?
+			adms = Administrador.where(email: params[:login][:email], senha: params[:login][:senha])
 			if adms.count > 0
-				cookies[:producao_admin] = { value: adms.first.id, expires: 1.year.from_now, httponly: true }
+				cookies[:netza_faleconosco] = { value: adms.first.id, expires: 1.year.from_now, httponly: true }
 				redirect_to "/"
 			else
 				flash[:error] = "Login e senha inválidos"
@@ -24,7 +24,7 @@ class LoginController < ApplicationController
 	end
 
 	def logout
-		cookies[:producao_admin] = nil
+		cookies[:netza_faleconosco] = nil
 	 	redirect_to "/login"
 	end
 end

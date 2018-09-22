@@ -1,0 +1,33 @@
+<div class="page-header">
+  <%= link_to new_chamado_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    Novo Chamado
+  <% end %>
+  <h1>Listando chamados</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Categoria</th>
+        <th>Assunto</th>
+        <th>Usuario</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @chamados.each do |chamado| %>
+      <tr class="<% unless chamado.lido %> bold <% end %>">
+        <td><%= chamado.categoria.nome %></td>
+        <td><%= chamado.assunto %></td>
+        <td><%= chamado.usuario.nome %></td>
+        <td style="background-color:<%= chamado.situacao.cor %>"><%= chamado.situacao.nome %></td>
+        <td><%= link_to 'Responder', chamado %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

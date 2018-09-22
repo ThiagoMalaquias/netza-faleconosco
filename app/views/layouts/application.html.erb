@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="">
-  <!-- <link rel="icon" href="/logo.png" /> -->
-  <title>Produção</title>
+  <link rel="shortcut icon" href="favicon.png" />
+  <title>Netza - Fale conosco admin</title>
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -28,11 +28,16 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <%= link_to "Produção", "/", class: "navbar-brand" %>
+        <a hre="/"><img src="/favicon.png" style="width:50px;float:left;margin-right:10px"></a>
+        <%= link_to "Netza - Fale conosco", "/", class: "navbar-brand" %>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
+          <li <% if params[:controller] == "chamados" %> class="active" <% end %>><a href="/chamados">Chamados</a></li>
+          <li <% if params[:controller] == "categorias" %> class="active" <% end %>><a href="/categorias">Categorias</a></li>
+          <li <% if params[:controller] == "situacoes" %> class="active" <% end %>><a href="/situacoes">Situações</a></li>
           <li <% if params[:controller] == "administradores" %> class="active" <% end %>><a href="/administradores">Administradores</a></li>
+          <li <% if params[:controller] == "usuarios" %> class="active" <% end %>><a href="/usuarios">Usuarios</a></li>
           <li><a href="/deslogar">Sair</a></li>
         </ul>
       </div>

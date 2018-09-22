@@ -14,6 +14,34 @@
  *= require_self
  */
 
+.pergunta{
+  background: #92cafb;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.resposta{
+  margin-left: 50px;
+  background: #cfbee8;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+
+textarea{
+  height: 300px!important;
+}
+
+.bold{
+  font-weight: bold;
+}
+
+.navbar-inverse .navbar-brand{
+  color: #ff673e
+}
+
 .botao_envia_admin{
   text-align: center;
   background-color: #5fe846;

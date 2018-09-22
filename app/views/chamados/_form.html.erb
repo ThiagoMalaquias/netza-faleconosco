@@ -1,0 +1,50 @@
+<%= form_for(@chamado, html: { class: "form-horizontal", role: "form" }) do |f| %>
+  <% if @chamado.errors.any? %>
+    <div class="alert alert-danger alert-dismissable" role="alert">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <h4>Confira os erros abaixo</h4>
+
+      <ul>
+      <% @chamado.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :categoria, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.select :categoria_id, Categoria.all.collect { |categoria| [categoria.nome, categoria.id] }, :selected => @chamado.categoria_id, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :assunto, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :assunto, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :comentario, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_area :comentario, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :usuario_cpf, "CPF Usuario", class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :usuario_cpf, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :situacao_id, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.select :situacao_id, Situacao.all.collect { |situacao| [situacao.nome, situacao.id] }, :selected => @chamado.situacao_id, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

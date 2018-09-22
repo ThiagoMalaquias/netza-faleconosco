@@ -1,0 +1,2 @@
+class Situacao < ApplicationRecord
+end
