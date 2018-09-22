@@ -1,0 +1,51 @@
+<div class="page-header" style="margin-top: 0px;">
+  <%= link_to "/chamados-multiclube", class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Voltar
+  <% end %>
+  <h1>Chamado número <%= @chamado.id %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Categoria:</dt>
+  <dd><%= @chamado.categoria.nome %></dd>
+
+  <dt>Assunto:</dt>
+  <dd><%= @chamado.assunto %></dd>
+
+  <dt>Usuario:</dt>
+  <dd><%= @chamado.usuario.nome %></dd>
+
+  <dt>Status:</dt>
+  <dd>
+    <div style="width: 200px;background-color:<%= @chamado.situacao.cor %>; padding: 10px; border-radius: 6px;text-align: center;">    
+    <%= @chamado.situacao.nome %>
+    </div>    
+  </dd>
+</dl>
+
+<hr>
+<% @chamado.perguntas_respostas.each do |pr| %>
+<div class="<%= pr.administrador_id.present? ? "resposta" : "pergunta" %>">
+  <dt><%= pr.administrador_id.present? ? "Resposta" : "Pergunta" %>:</dt>
+  <dd><%= pr.comentario %></dd>
+  <dd><%= pr.created_at.strftime("%d/%m/%Y %H:%M") %></dd>
+</div>
+<% end %>
+<% if @chamado.situacao.id != Situacao.where(nome: "Finalizado").first.id %>
+  <hr>
+  <%= form_for(:resposta, url: "/chamados-multiclube/#{@chamado.perguntas_respostas.last.id}/responder", html: { class: "form-horizontal", role: "form" }) do |f| %>
+    <div class="form-group">
+      <input type="hidden" name="chamado_original_id" value="<%= @chamado.id %>">
+      <%= f.label :comentario, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.text_area :comentario, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <%= f.submit "Responder", class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

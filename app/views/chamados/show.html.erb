@@ -29,6 +29,7 @@
 
   <dt>Lido:</dt>
   <dd><%= @chamado.lido ? "Sim" : "Não" %></dd>
+</dl>
 <hr>
 <%= form_for(:resposta, url: "/chamados/#{@chamado.id}/alterar", html: { class: "form-horizontal", role: "form" }) do |f| %>
   <% if @chamado.errors.any? %>

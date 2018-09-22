@@ -7,6 +7,11 @@ class ChamadosController < ApplicationController
     @chamados = Chamado.where("chamado_id is null")
     options = {page: params[:page] || 1, per_page: 10}
     if params[:busca].present?
+
+      if params[:busca][:usuario].present?
+        @chamados = @chamados.where("usuario_id in ( select usuarios.id from usuarios where usuarios.nome #{Sql.like} '%#{params[:busca][:usuario]}%' )")
+      end
+
       if params[:busca][:assunto].present?
         @chamados = @chamados.where("assunto #{Sql.like} '%#{params[:busca][:assunto]}%' ")
       end
@@ -51,13 +56,13 @@ class ChamadosController < ApplicationController
 
     chamado_original = Chamado.find(params[:chamado_original_id])
     chamado_original.situacao_id = situacao.id
+    chamado_original.lido_usuario = false
     chamado_original.save
 
     resposta = Chamado.new
     resposta.administrador_id = administrador.id
     resposta.chamado_id = @chamado.id
     resposta.categoria_id = chamado_original.categoria_id
-    resposta.assunto = chamado_original.assunto
     resposta.assunto = chamado_original.assunto
     resposta.comentario = params[:resposta][:comentario]
     resposta.usuario_id = chamado_original.usuario_id

@@ -16,4 +16,11 @@ Rails.application.routes.draw do
   post '/chamados/:id/alterar', to: 'chamados#alterar'
   post '/chamados/:id/responder', to: 'chamados#responder'
 
+  get '/multiclube', to: 'multiclube#index'
+  post '/chamados-multiclube', to: 'chamados_multiclube#create'
+  get '/chamados-multiclube', to: 'chamados_multiclube#index'
+  get '/chamados-multiclube/novo', to: 'chamados_multiclube#new'
+  get '/chamados-multiclube/:id', to: 'chamados_multiclube#show'
+  post '/chamados-multiclube/:id/responder', to: 'chamados_multiclube#responder'
+
 end

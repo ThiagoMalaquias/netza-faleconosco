@@ -1,0 +1,50 @@
+<div class="page-header" style="margin-top: 0px;">
+  <%= link_to "/chamados-multiclube/novo", class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    Abrir novo chamado
+  <% end %>
+  <h1>Fale conosco</h1>
+</div>
+
+<%= form_for(:busca, url: "/chamados-multiclube", html: { method: "GET", class: "form-horizontal", role: "form" }) do |f| %>
+  <div class="form-group">
+    <%= f.label :situacao_id, "Situação", class: "col-sm-2 control-label" %>
+    <div class="col-sm-2">
+      <%= f.select :situacao_id, Situacao.all.collect { |situacao| [situacao.nome, situacao.id] }, :include_blank => "[Selecione]", :selected => (params[:busca][:situacao_id] rescue nil), class: "form-control" %>
+    </div>
+    <div class="col-sm-3">
+      <%= f.submit "Filtrar", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
+<hr>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Número</th>
+        <th>Categoria</th>
+        <th>Assunto</th>
+        <th>Usuario</th>
+        <th>Data</th>
+        <th>Status</th>
+        <th>Vizualizar</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @chamados.each do |chamado| %>
+      <tr class="<% unless chamado.lido_usuario %> bold <% end %>">
+        <td><%= chamado.categoria.id %></td>
+        <td><%= chamado.categoria.nome %></td>
+        <td><%= chamado.assunto %></td>
+        <td><%= chamado.usuario.nome %></td>
+        <td><%= chamado.updated_at.strftime("%d/%m/%Y %H:%M") %></td>
+        <td style="background-color:<%= chamado.situacao.cor %>"><%= chamado.situacao.nome %></td>
+        <td><a href="/chamados-multiclube/<%= chamado.id %>" >Ver</a></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
