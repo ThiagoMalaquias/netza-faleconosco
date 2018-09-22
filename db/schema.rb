@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180922151714) do
+ActiveRecord::Schema.define(version: 20180922173844) do
 
   create_table "administradores", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "nome"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20180922151714) do
     t.integer  "chamado_id"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.integer  "status_id_id"
     t.integer  "situacao_id"
     t.index ["categoria_id"], name: "index_chamados_on_categoria_id", using: :btree
     t.index ["situacao_id"], name: "index_chamados_on_situacao_id", using: :btree
@@ -62,6 +63,7 @@ ActiveRecord::Schema.define(version: 20180922151714) do
     t.string   "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "telefone"
   end
 
   add_foreign_key "chamados", "categorias"

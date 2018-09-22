@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   post '/login/on', to: 'login#login'
   get '/deslogar', to: 'login#logout'
 
+  post '/chamados/:id/alterar', to: 'chamados#alterar'
   post '/chamados/:id/responder', to: 'chamados#responder'
 
 end

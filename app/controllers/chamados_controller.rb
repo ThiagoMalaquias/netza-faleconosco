@@ -1,10 +1,26 @@
 class ChamadosController < ApplicationController
-  before_action :set_chamado, only: [:show, :edit, :update, :destroy, :responder]
+  before_action :set_chamado, only: [:show, :edit, :update, :destroy, :responder, :alterar]
 
   # GET /chamados
   # GET /chamados.json
   def index
     @chamados = Chamado.where("chamado_id is null")
+    options = {page: params[:page] || 1, per_page: 10}
+    if params[:busca].present?
+      if params[:busca][:assunto].present?
+        @chamados = @chamados.where("assunto #{Sql.like} '%#{params[:busca][:assunto]}%' ")
+      end
+
+      if params[:busca][:categoria_id].present?
+        @chamados = @chamados.where("categoria_id = #{params[:busca][:categoria_id]} ")
+      end
+
+      if params[:busca][:situacao_id].present?
+        @chamados = @chamados.where("situacao_id = #{params[:busca][:situacao_id]} ")
+      end
+    end
+
+    @chamados = @chamados.paginate(options)
   end
 
   # GET /chamados/1
@@ -21,6 +37,13 @@ class ChamadosController < ApplicationController
 
   # GET /chamados/1/edit
   def edit
+  end
+
+  def alterar
+    @chamado.situacao_id = params[:resposta][:situacao_id]
+    @chamado.save!
+
+    redirect_to "/chamados/#{@chamado.id}"
   end
 
   def responder

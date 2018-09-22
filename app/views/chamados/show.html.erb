@@ -29,17 +29,8 @@
 
   <dt>Lido:</dt>
   <dd><%= @chamado.lido ? "Sim" : "Não" %></dd>
-</dl>
 <hr>
-  <% @chamado.perguntas_respostas.each do |pr| %>
-  <div class="<%= pr.administrador_id.present? ? "resposta" : "pergunta" %>">
-    <dt><%= pr.administrador_id.present? ? "Resposta" : "Pergunta" %>:</dt>
-    <dd><%= pr.comentario %></dd>
-    <dd><%= pr.created_at.strftime("%d/%m/%Y %H:%M") %></dd>
-  </div>
-  <% end %>
-<hr>
-<%= form_for(:resposta, url: "/chamados/#{@chamado.perguntas_respostas.last.id}/responder", html: { class: "form-horizontal", role: "form" }) do |f| %>
+<%= form_for(:resposta, url: "/chamados/#{@chamado.id}/alterar", html: { class: "form-horizontal", role: "form" }) do |f| %>
   <% if @chamado.errors.any? %>
     <div class="alert alert-danger alert-dismissable" role="alert">
       <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -52,7 +43,27 @@
       </ul>
     </div>
   <% end %>
+  <div class="form-group">
+    <%= f.label :situacao_id, "Situação", class: "col-sm-2 control-label" %>
+    <div class="col-sm-2">
+      <%= f.select :situacao_id, Situacao.all.collect { |situacao| [situacao.nome, situacao.id] }, :selected => @chamado.situacao_id, class: "form-control" %>
+    </div>
+    <div class="col-sm-8">
+      <%= f.submit "Alterar", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
 
+<hr>
+<% @chamado.perguntas_respostas.each do |pr| %>
+<div class="<%= pr.administrador_id.present? ? "resposta" : "pergunta" %>">
+  <dt><%= pr.administrador_id.present? ? "Resposta" : "Pergunta" %>:</dt>
+  <dd><%= pr.comentario %></dd>
+  <dd><%= pr.created_at.strftime("%d/%m/%Y %H:%M") %></dd>
+</div>
+<% end %>
+<hr>
+<%= form_for(:resposta, url: "/chamados/#{@chamado.perguntas_respostas.last.id}/responder", html: { class: "form-horizontal", role: "form" }) do |f| %>
   <div class="form-group">
     <input type="hidden" name="chamado_original_id" value="<%= @chamado.id %>">
     <%= f.label :comentario, class: "col-sm-2 control-label" %>

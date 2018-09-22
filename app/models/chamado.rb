@@ -3,6 +3,8 @@ class Chamado < ApplicationRecord
   belongs_to :usuario
   belongs_to :situacao
 
+  default_scope { order(updated_at: :desc) }
+
   attr_accessor :usuario_cpf
 
   validate :usuario_id, :presence

@@ -13,7 +13,7 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :categoria, class: "col-sm-2 control-label" %>
+    <%= f.label :categoria_id, class: "col-sm-2 control-label" %>
     <div class="col-sm-10">
       <%= f.select :categoria_id, Categoria.all.collect { |categoria| [categoria.nome, categoria.id] }, :selected => @chamado.categoria_id, class: "form-control" %>
     </div>
@@ -34,12 +34,6 @@
     <%= f.label :usuario_cpf, "CPF Usuario", class: "col-sm-2 control-label" %>
     <div class="col-sm-10">
       <%= f.text_field :usuario_cpf, class: "form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :situacao_id, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.select :situacao_id, Situacao.all.collect { |situacao| [situacao.nome, situacao.id] }, :selected => @chamado.situacao_id, class: "form-control" %>
     </div>
   </div>
   <div class="form-group">
