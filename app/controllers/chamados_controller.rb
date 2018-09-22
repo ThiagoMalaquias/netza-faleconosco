@@ -79,7 +79,7 @@ class ChamadosController < ApplicationController
 
     respond_to do |format|
       if @chamado.save
-        format.html { redirect_to @chamado, notice: 'Chamado was successfully created.' }
+        format.html { redirect_to @chamado, notice: 'Chamado foi criado com sucesso.' }
         format.json { render :show, status: :created, location: @chamado }
       else
         format.html { render :new }
@@ -93,7 +93,7 @@ class ChamadosController < ApplicationController
   def update
     respond_to do |format|
       if @chamado.update(chamado_params)
-        format.html { redirect_to @chamado, notice: 'Chamado was successfully updated.' }
+        format.html { redirect_to @chamado, notice: 'Chamado foi atualizado com sucesso.' }
         format.json { render :show, status: :ok, location: @chamado }
       else
         format.html { render :edit }
@@ -107,7 +107,7 @@ class ChamadosController < ApplicationController
   def destroy
     @chamado.destroy
     respond_to do |format|
-      format.html { redirect_to chamados_url, notice: 'Chamado was successfully destroyed.' }
+      format.html { redirect_to chamados_url, notice: 'Chamado foi apagado com sucesso.' }
       format.json { head :no_content }
     end
   end

@@ -28,7 +28,7 @@ class SituacoesController < ApplicationController
 
     respond_to do |format|
       if @situacao.save
-        format.html { redirect_to @situacao, notice: 'Situacao was successfully created.' }
+        format.html { redirect_to @situacao, notice: 'Situacao foi criado com sucesso.' }
         format.json { render :show, status: :created, location: @situacao }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class SituacoesController < ApplicationController
   def update
     respond_to do |format|
       if @situacao.update(situacao_params)
-        format.html { redirect_to @situacao, notice: 'Situacao was successfully updated.' }
+        format.html { redirect_to @situacao, notice: 'Situacao foi atualizado com sucesso.' }
         format.json { render :show, status: :ok, location: @situacao }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class SituacoesController < ApplicationController
   def destroy
     @situacao.destroy
     respond_to do |format|
-      format.html { redirect_to situacoes_url, notice: 'Situacao was successfully destroyed.' }
+      format.html { redirect_to situacoes_url, notice: 'Situacao foi apagado com sucesso.' }
       format.json { head :no_content }
     end
   end

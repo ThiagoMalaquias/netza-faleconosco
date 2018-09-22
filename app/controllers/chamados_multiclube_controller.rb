@@ -67,7 +67,7 @@ class ChamadosMulticlubeController < UsuarioSessaoController
     @chamado.lido_usuario = true
 
     if @chamado.save
-      redirect_to "/chamados-multiclube", notice: 'Chamado was successfully created.'
+      redirect_to "/chamados-multiclube", notice: 'Chamado foi criado com sucesso.'
     else
       render "new"
     end
