@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def administrador
-  	Administrador.find(cookies[:netza_faleconosco])
+  	Usuario.find(cookies[:netza_faleconosco])
   rescue
   	nil
   end

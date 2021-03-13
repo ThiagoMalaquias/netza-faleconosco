@@ -63,7 +63,7 @@
   <dd><%= pr.created_at.strftime("%d/%m/%Y %H:%M") %></dd>
 </div>
 <% end %>
-<hr>
+<hr>zz
 <%= form_for(:resposta, url: "/chamados/#{@chamado.perguntas_respostas.last.id}/responder", html: { class: "form-horizontal", role: "form" }) do |f| %>
   <div class="form-group">
     <input type="hidden" name="chamado_original_id" value="<%= @chamado.id %>">

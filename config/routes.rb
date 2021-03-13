@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   
+  resources :usuarios
+  resources :bate_papos
   resources :situacoes
   resources :status
   resources :categorias
-  resources :usuarios
   resources :chamados
   resources :administradores
   root to: 'chamados#index'

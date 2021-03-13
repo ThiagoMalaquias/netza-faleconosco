@@ -9,7 +9,7 @@ class LoginController < ApplicationController
 
 	def login
 		if params[:login][:email].present? && params[:login][:senha].present?
-			adms = Administrador.where(email: params[:login][:email], senha: params[:login][:senha])
+			adms = Usuario.where(email: params[:login][:email], senha: params[:login][:senha])
 			if adms.count > 0
 				cookies[:netza_faleconosco] = { value: adms.first.id, expires: 1.year.from_now, httponly: true }
 				redirect_to "/"

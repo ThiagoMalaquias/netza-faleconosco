@@ -1,0 +1,44 @@
+<div class="page-header">
+  <%= link_to new_bate_papo_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    Novo Bate papo
+  <% end %>
+  <h1>Listando bate_papos</h1>
+</div>
+
+<div style="margin: auto;width: 50%;overflow: scroll;height: 370px;" id="mensagens">
+  <% @bate_papos.each do |bate_papo| %>
+    <div class="<%= bate_papo.usuario_id == JSON.parse(cookies[:netza_faleconosco]) ? "resposta" : "pergunta" %>">
+      <dt><%= bate_papo.usuario.nome%></dt>
+      <dd><%= bate_papo.mensagem%></dd>
+      <div style="display: flow-root;">
+        <dd style="float: right;">
+          <%= bate_papo.created_at.strftime("%d/%m/%Y %H:%M")%>
+        </dd>
+      </div>
+    </div>
+  <% end %>
+</div>
+  
+<br>
+
+<div style="margin: auto;width: 50%;">
+  <br>
+  <%= form_for(@bate_papo, html: { class: "form-horizontal", role: "form" }) do |f| %>
+    <div class="form-group">
+      <div class="col-sm-10" style="    padding: 0;">
+        <%= f.text_field :mensagem, class: "form-control" %>
+      </div>
+      <div class="col-sm-2">
+        <%= f.submit "Enviar", class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var objDiv = document.getElementById("mensagens");
+    objDiv.scrollTop = objDiv.scrollHeight;
+  });
+</script>

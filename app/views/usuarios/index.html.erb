@@ -11,10 +11,11 @@
     <thead>
       <tr>
         <th>Nome</th>
-        <th>CPF</th>
         <th>Email</th>
         <th>Telefone</th>
-            <th></th>
+        <th>Cpf</th>
+        <th>Senha</th>
+        <th></th>
         <th></th>
         <th></th>
       </tr>
@@ -23,9 +24,10 @@
     <tbody>
       <%= content_tag_for(:tr, @usuarios) do |usuario| %>
         <td><%= usuario.nome %></td>
-        <td><%= usuario.cpf %></td>
         <td><%= usuario.email %></td>
         <td><%= usuario.telefone %></td>
+        <td><%= usuario.cpf %></td>
+        <td><%= usuario.senha %></td>
             <td><%= link_to 'Mostrar', usuario %></td>
         <td><%= link_to 'Editar', edit_usuario_path(usuario) %></td>
         <td><%= link_to 'Apagar', usuario, method: :delete, data: { confirm: 'Tem certeza ?' } %></td>
