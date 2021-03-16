@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210313194917) do
+ActiveRecord::Schema.define(version: 20210316132348) do
 
   create_table "administradores", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "nome"
@@ -48,6 +48,12 @@ ActiveRecord::Schema.define(version: 20210313194917) do
     t.boolean  "lido_usuario"
     t.index ["categoria_id"], name: "index_chamados_on_categoria_id", using: :btree
     t.index ["situacao_id"], name: "index_chamados_on_situacao_id", using: :btree
+  end
+
+  create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "content",    limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "situacoes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

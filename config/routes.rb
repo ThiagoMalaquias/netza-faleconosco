@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   resources :usuarios
   resources :bate_papos
   resources :situacoes
@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   resources :categorias
   resources :chamados
   resources :administradores
-  root to: 'chamados#index'
+  root to: 'rooms#show'
+
+  mount ActionCable.server => '/cable'
 
   # get "/admin" => redirect("/")
   get '/login', to: 'login#index'
